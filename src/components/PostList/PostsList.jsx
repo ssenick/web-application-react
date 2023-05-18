@@ -1,13 +1,13 @@
 import React from 'react';
 import Post from "../Post/Post";
-import "./PostList.scss"
+import s from "./PostList.module.scss"
 const PostsList = ({posts,title}) => {
    return (
-      <div className="postList">
-         <h2 className="postList__title">
+      <div className={s.postList}>
+         <h2 className={s.postList__title}>
             {title}
          </h2>
-         <div className="postList__posts">
+         <div className={s.postList__posts}>
             {posts.map((post)=>
                <Post post={post} key={post.id}/>
             )}

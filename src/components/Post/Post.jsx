@@ -1,14 +1,14 @@
 import React from 'react';
-import './Post.scss'
+import s from './Post.module.scss'
 
 const Post = ({post}) => {
    return (
-      <div className="post">
-         <div className="post__content">
-            <strong className="post__title">{post.id}. {post.title}</strong>
-            <div className="post__description">{post.body}</div>
+      <div className={s.post}>
+         <div className={s.post__content}>
+            <strong className={s.post__title}>{post.id}. {post.title}</strong>
+            <div className={s.post__description}>{post.body}</div>
          </div>
-         <div className="post__buttons">
+         <div className={s.post__buttons}>
             <button>Delete</button>
          </div>
       </div>

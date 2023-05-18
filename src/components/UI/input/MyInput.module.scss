@@ -1,0 +1,20 @@
+@import "../../style/Colors";
+.input{
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  background-color: $color-6;
+  border: 1px solid $color-4;
+  width: 100%;
+  padding: 0 16px;
+  min-height: 40px;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-start;
+  transition: all .3s ease 0s;
+  position: relative;
+  color: $color-5;
+  &:focus{
+    border: 1px solid $color-5;
+  }
+}
