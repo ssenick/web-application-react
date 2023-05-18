@@ -1,9 +1,7 @@
 import React, {useState} from "react";
 import './components/style/App.scss';
-import Post from "./components/Post/Post";
 import PostsList from "./components/PostList/PostsList";
-import MyInput from "./components/UI/input/MyInput";
-import MyButton from "./components/UI/button/MyButton";
+import PostForm from "./components/PostForm/PostForm";
 
 // import './style/Colors.scss';
 function App() {
@@ -12,22 +10,23 @@ function App() {
       {id: 2, title: 'Javascript 2', body: '  Lorem ipsum  sit amet. dolor sit amet.'},
       {id: 3, title: 'Javascript 3', body: '  Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.'}
    ])
-   const [title, setTitle] = useState('')
-   const [description, setDescription] = useState('')
 
-   function addNewPost(e) {
-      e.preventDefault();
 
+   function createPost(newPost) {
+      setPosts([...posts, newPost])
+   }
+
+   function removePost(post) {
+      setPosts(posts.filter(p => p.id !== post.id))
    }
 
    return (
       <div className="App">
-         <form>
-            <MyInput value={title} onChange={e => setTitle(e.target.value)} placeholder="Post title"/>
-            <MyInput value={description} onChange={e => setDescription(e.target.value)} placeholder="Post description"/>
-            <MyButton onClick={addNewPost} children='Add post' color="green"/>
-         </form>
-         <PostsList posts={posts} title="Post list"/>
+         <PostForm create={createPost}/>
+         {posts.length
+            ? <PostsList remove={removePost} posts={posts} title="Post list"/>
+            : <h2 style={{textAlign: 'center',fontSize:'30px'}}>Sorry, no posts found!</h2>}
+
       </div>
    );
 }
