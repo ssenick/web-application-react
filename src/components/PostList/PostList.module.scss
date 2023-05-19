@@ -1,4 +1,14 @@
+@import "../style/Colors";
+.text{
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+  padding: 15px 0;
+}
 .postList{
+  padding: 20px;
+  background-color: $color-6;
+  border-radius: 15px;
   &__title{
     text-align: center;
     margin-bottom: 20px;

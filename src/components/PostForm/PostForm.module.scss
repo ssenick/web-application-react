@@ -1,0 +1,9 @@
+@import "../style/Colors";
+
+.postForm{
+  display: grid;
+  gap: 15px;
+  background-color: $color-2;
+  border-radius: 15px;
+  padding: 20px ;
+}

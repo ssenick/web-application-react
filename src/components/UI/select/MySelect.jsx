@@ -1,5 +1,4 @@
 import React from 'react';
-import {selectOptions} from "@testing-library/user-event/dist/select-options";
 
 const MySelect = ({options,defaultValue,value,onChange}) => {
    return (
