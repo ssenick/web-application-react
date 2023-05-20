@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import './components/style/App.scss';
 import PostsList from "./components/PostList/PostsList";
 import PostForm from "./components/PostForm/PostForm";
@@ -6,18 +6,28 @@ import PostFilter from "./components/PostFilter/PostFilter";
 import MyModal from "./components/MyModal/MyModal";
 import MyButton from "./components/UI/button/MyButton";
 import {usePosts} from "./components/hooks/usePosts";
+import axios from "axios";
+import PostService from "./components/API/postService";
 
 function App() {
    const [posts, setPosts] = useState([
-      {id: 1, title: 'Javascript', body: '  Lorem ipsum dolor sit amet.'},
-      {id: 2,title: 'Html',body: '  Lorem ipsum  sit amet. dolor sit amet.'},
-      {id: 3, title: 'Python', body: '  Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.'}
-   ])
+      // {id: 1, title: 'Javascript', body: '  Lorem ipsum dolor sit amet.'},
+      // {id: 2, title: 'Html', body: '  Lorem ipsum  sit amet. dolor sit amet.'},
+      // {id: 3, title: 'Python', body: '  Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.'}
+   ]);
+
+   async function fetchPosts() {
+      const response = await PostService.getAll()
+      setPosts(response);
+   }
+
+   useMemo(() => {
+      fetchPosts();
+   }, [])
 
    const [filter, setFilter] = useState({sort: '', query: ''});
    const [visible, setVisible] = useState(false)
-   const sortedAndSearchedPost = usePosts(posts,filter.sort,filter.query)
-
+   const sortedAndSearchedPost = usePosts(posts, filter.sort, filter.query)
 
 
    function createPost(newPost) {
@@ -30,7 +40,8 @@ function App() {
    }
 
    return (<div className="App">
-         <MyButton color='green' onClick={()=>setVisible(true)}>Creat post</MyButton>
+         <button onClick={fetchPosts}>Axios</button>
+         <MyButton color='green' onClick={() => setVisible(true)}>Creat post</MyButton>
          <MyModal visible={visible} setVisible={setVisible}>
             <PostForm create={createPost}/>
          </MyModal>
