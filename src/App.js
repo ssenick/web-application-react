@@ -23,8 +23,7 @@ function App() {
    useMemo(() => {
       fetchPosts();
    }, [])
-
-
+   
    function createPost(newPost) {
       setPosts([...posts, newPost])
       setVisible(false)
