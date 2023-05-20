@@ -8,17 +8,16 @@ import MyButton from "./components/UI/button/MyButton";
 import {usePosts} from "./components/hooks/usePosts";
 import axios from "axios";
 import PostService from "./components/API/postService";
+import PostLoader from "./components/Loaders/PostLoader";
 
 function App() {
-   const [posts, setPosts] = useState([
-      // {id: 1, title: 'Javascript', body: '  Lorem ipsum dolor sit amet.'},
-      // {id: 2, title: 'Html', body: '  Lorem ipsum  sit amet. dolor sit amet.'},
-      // {id: 3, title: 'Python', body: '  Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.'}
-   ]);
-
+   const [posts, setPosts] = useState([]);
+   const [isPostsLoading,setIsPostsLoading] = useState(false);
    async function fetchPosts() {
-      const response = await PostService.getAll()
-      setPosts(response);
+      setIsPostsLoading(true);
+      const posts = await PostService.getAll()
+      setPosts(posts);
+      setIsPostsLoading(false);
    }
 
    useMemo(() => {
@@ -50,7 +49,11 @@ function App() {
             filter={filter}
             setFilter={setFilter}
          />
-         <PostsList remove={removePost} posts={sortedAndSearchedPost} title="Post list"/>
+         {isPostsLoading
+         ? <PostLoader/>
+         : <PostsList remove={removePost} posts={sortedAndSearchedPost} title="Post list"/>
+         }
+
       </div>
    );
 }
