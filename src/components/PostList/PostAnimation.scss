@@ -1,0 +1,42 @@
+
+.postItem-enter {
+  opacity: 0;
+  transform: translateY(5%);
+}
+.postItem-enter-active {
+  animation-name: fadeInLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+.postItem-exit {
+  opacity: 1;
+  transform: translateY(0%);
+}
+.postItem-exit-active {
+  animation-name: fadeOutLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+
+}
+
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-10%, 0, 0);
+  }
+}
+
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-5%, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
