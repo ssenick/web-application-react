@@ -9,21 +9,33 @@ import {usePosts} from "./components/hooks/usePosts";
 import PostService from "./components/API/postService";
 import PostLoader from "./components/UI/Loaders/PostLoader";
 import {useFetching} from "./components/hooks/useFetching";
+import {getPageCount, getPagesArray} from "./components/utils/pages";
+import {usePagesPagination} from "./components/hooks/usePagesPagination";
+import PagePagination from "./components/UI/pagePagination/PagePaggination";
 
 function App() {
    const [posts, setPosts] = useState([]);
    const [filter, setFilter] = useState({sort: '', query: ''});
-   const [visible, setVisible] = useState(false)
+   const [visible, setVisible] = useState(false);
+   const [limit, setLimit] = useState(10)
+   const [page, setPage] = useState(1);
+   const [totalPage, setTotalPage] = useState(0)
    const sortedAndSearchedPost = usePosts(posts, filter.sort, filter.query)
+
    const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
-      const posts = await PostService.getAll()
-      setPosts(posts);
-   })
+      const response = await PostService.getAll(limit, page)
+      setPosts(response.data);
+      const totalCount = response.headers['x-total-count'];
+      setTotalPage(getPageCount(totalCount, limit))
+   });
+
+
+
 
    useMemo(() => {
       fetchPosts();
-   }, [])
-   
+   }, [page])
+
    function createPost(newPost) {
       setPosts([...posts, newPost])
       setVisible(false)
@@ -51,6 +63,7 @@ function App() {
             ? <PostLoader/>
             : <PostsList remove={removePost} posts={sortedAndSearchedPost} title="Post list"/>
          }
+       <PagePagination totalPage = {totalPage} activePage={page} setPage={setPage}/>
       </div>
    );
 }

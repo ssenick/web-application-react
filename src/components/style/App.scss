@@ -38,6 +38,9 @@ body {
   color: $color-5;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
+  @media (max-width: 700px){
+    padding: 0;
+  }
 }
 
 input,
