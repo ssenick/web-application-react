@@ -1,0 +1,46 @@
+@import "../style/Colors";
+.layout{
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+.header{
+  padding: 30px 20px;
+  background-color: $color-9;
+  @media (max-width: 700px){
+    padding: 20px 10px;
+  }
+  &__nav{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+  }
+  &__link{
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in 0ms;
+    &:hover{
+      color: $color-3;
+    }
+    &.active{
+     color: $color-8;
+    }
+  }
+}
+.main{
+  flex: 1 1 auto;
+  padding: 30px 20px;
+  @media (max-width: 700px){
+    padding: 20px 10px;
+  }
+}
+.footer{
+  padding: 30px 20px;
+  text-align: center;
+  background-color: $color-9;
+  @media (max-width: 700px){
+    padding: 20px 10px;
+  }
+
+}

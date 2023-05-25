@@ -1,4 +1,5 @@
 @import "Colors.scss";
+
 * {
   padding: 0;
   margin: 0;
@@ -34,13 +35,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $color-1;
-  padding: 20px;
+
   color: $color-5;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
-  @media (max-width: 700px){
+  @media (max-width: 700px) {
     padding: 0;
   }
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 input,
@@ -85,9 +93,10 @@ h6 {
   font-weight: inherit;
   font-size: inherit;
 }
-.App{
+
+.Posts {
   display: grid;
-  gap:40px;
-  padding: 30px 20px;
+  gap: 40px;
+
 }
 
