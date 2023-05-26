@@ -1,0 +1,19 @@
+@import "../style/Colors";
+.comment{
+  background-color: $color-2;
+  border: 1px solid $color-4;
+  padding: 10px;
+  &__name{
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  &__email{
+    margin-bottom: 12px;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  &__text{
+
+  }
+}

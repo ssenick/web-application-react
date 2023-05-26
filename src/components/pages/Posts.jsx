@@ -28,9 +28,6 @@ function Posts() {
       setTotalPage(getPageCount(totalCount, limit))
    });
 
-
-
-
    useMemo(() => {
       fetchPosts();
    }, [page])

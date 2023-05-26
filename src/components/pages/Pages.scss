@@ -1,0 +1,43 @@
+@import "../style/Colors";
+
+.page-id{
+  &__container{
+    background-color: $color-2;
+    border: 1px solid $color-4;
+    display: grid;
+    gap: 25px;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  &__header{
+    display: grid;
+    gap: 15px;
+  }
+  &__title{
+    font-size: 30px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $color-4;
+    color:$color-3;
+    font-weight: 500;
+  }
+  &__text p{
+    font-size: 16px;
+    line-height: 1.2;
+    opacity: 0.8;
+  }
+}
+
+.comments{
+  &__title{
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+  &__list{
+    display: grid;
+    gap: 10px;
+  }
+}
