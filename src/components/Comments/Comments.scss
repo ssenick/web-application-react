@@ -1,0 +1,16 @@
+@import "../style/Colors";
+
+.comments{
+  background-color: $color-6;
+  padding: 12px;
+  border-radius: 10px;
+  &__title{
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+  &__list{
+    display: grid;
+    gap: 10px;
+  }
+}

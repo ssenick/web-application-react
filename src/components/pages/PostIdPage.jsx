@@ -1,13 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useFetching} from "../hooks/useFetching";
 import PostService from "../API/postService";
-import  './Pages.scss'
-import Comment from "../Comment/Comment";
+import './Pages.scss'
+import PostLoader from "../UI/Loaders/PostLoader";
+import Comments from "../Comments/Comments";
+import MyButton from "../UI/button/MyButton";
+
 const PostIdPage = () => {
    const {id} = useParams();
-   const [post,setPost] = useState({})
-   const [comments,setComments] = useState([])
+   const [post, setPost] = useState({})
+   const [comments, setComments] = useState([])
+   const navigate = useNavigate();
+   const goBack = () => navigate(-1);
    const [fetchPostById, isPostIdLoading, postIdError] = useFetching(async (id) => {
       const response = await PostService.getPostById(id)
       setPost(response.data)
@@ -18,29 +23,39 @@ const PostIdPage = () => {
       console.log(response.data)
    });
 
-   useEffect(()=>{
+   useEffect(() => {
       fetchPostById(id)
       fetchPostComments(id)
-   },[])
+   }, [])
 
    return (
       <div className='page-id'>
          <div className='page-id__container'>
-            <div className="page-id__header">
-               <h3 className="page-id__title">{post.id}. {post.title}</h3>
-               <div className="page-id__text">
-                  <p>{post.body}</p>
+            <MyButton color="green" onClick={goBack}  >COME BACK</MyButton>
+            {postIdError &&
+               <h2 style={{textAlign: 'center', paddingTop: '20px', fontSize: "25px"}}>
+                  The following error has occurred: "{postIdError}"
+               </h2>
+            }
+            {isPostIdLoading
+               ? <PostLoader/>
+               : <div className="page-id__header">
+                  <h3 className="page-id__title">{post.id}. {post.title}</h3>
+                  <div className="page-id__text">
+                     <p>{post.body}</p>
+                  </div>
                </div>
-            </div>
-            <div className="page-id__comments comments">
-               <h5 className="comments__title">Comments:</h5>
-               <ul className="comments__list">
-                  {comments.map((comment)=>
-                     <li key={comment.id}><Comment  name={comment.name} body={comment.body} email={comment.email} /></li>
-                  )}
-               </ul>
-            </div>
+            }
 
+            {commentPostError &&
+               <h2 style={{textAlign: 'center', paddingTop: '20px', fontSize: "25px"}}>
+                  The following error has occurred: "{commentPostError}"
+               </h2>
+            }
+            {isCommentPostLoading
+               ? <PostLoader/>
+               : <Comments comments={comments}/>
+            }
          </div>
 
       </div>

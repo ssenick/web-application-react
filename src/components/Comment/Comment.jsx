@@ -5,7 +5,9 @@ const Comment = ({name,email,body}) => {
       <div className="comment">
          <h5 className='comment__name'>Name: <span>{name}</span></h5>
          <div className="comment__email">Email: {email}</div>
-         <div className="comment__body">Text: {body}</div>
+         <div className="comment__body">Text:
+           <p>{body}</p>
+         </div>
       </div>
    );
 };
