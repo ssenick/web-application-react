@@ -2,10 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {useFetching} from "../hooks/useFetching";
 import PostService from "../API/postService";
-import './Pages.scss'
-import PostLoader from "../UI/Loaders/PostLoader";
-import Comments from "../Comments/Comments";
-import MyButton from "../UI/button/MyButton";
+import '../style/Pages.scss'
+import PostLoader from "../components/UI/Loaders/PostLoader";
+import Comments from "../components/Comments/Comments";
+import MyButton from "../components/UI/button/MyButton";
+import ErrorMessage from "../components/UI/errorMessage/ErrorMessage";
 
 const PostIdPage = () => {
    const {id} = useParams();
@@ -20,7 +21,6 @@ const PostIdPage = () => {
    const [fetchPostComments, isCommentPostLoading, commentPostError] = useFetching(async (id) => {
       const response = await PostService.getPostComments(id)
       setComments(response.data)
-      console.log(response.data)
    });
 
    useEffect(() => {
@@ -31,11 +31,9 @@ const PostIdPage = () => {
    return (
       <div className='page-id'>
          <div className='page-id__container'>
-            <MyButton color="green" onClick={goBack}  >COME BACK</MyButton>
+            <MyButton color="green" onClick={goBack}>COME BACK</MyButton>
             {postIdError &&
-               <h2 style={{textAlign: 'center', paddingTop: '20px', fontSize: "25px"}}>
-                  The following error has occurred: "{postIdError}"
-               </h2>
+               <ErrorMessage error={postIdError}/>
             }
             {isPostIdLoading
                ? <PostLoader/>
@@ -48,9 +46,7 @@ const PostIdPage = () => {
             }
 
             {commentPostError &&
-               <h2 style={{textAlign: 'center', paddingTop: '20px', fontSize: "25px"}}>
-                  The following error has occurred: "{commentPostError}"
-               </h2>
+               <ErrorMessage error={commentPostError}/>
             }
             {isCommentPostLoading
                ? <PostLoader/>

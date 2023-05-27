@@ -4,13 +4,14 @@ import {usePosts} from "../hooks/usePosts";
 import {useFetching} from "../hooks/useFetching";
 import PostService from "../API/postService";
 import {getPageCount} from "../utils/pages";
-import MyButton from "../UI/button/MyButton";
-import MyModal from "../MyModal/MyModal";
-import PostForm from "../PostForm/PostForm";
-import PostFilter from "../PostFilter/PostFilter";
-import PostLoader from "../UI/Loaders/PostLoader";
-import PostsList from "../PostList/PostsList";
-import PagePagination from "../UI/pagePagination/PagePaggination";
+import MyButton from "../components/UI/button/MyButton";
+import MyModal from "../components/MyModal/MyModal";
+import PostForm from "../components/PostForm/PostForm";
+import PostFilter from "../components/PostFilter/PostFilter";
+import PostLoader from "../components/UI/Loaders/PostLoader";
+import PostsList from "../components/PostList/PostsList";
+import PagePagination from "../components/UI/pagePagination/PagePaggination";
+import ErrorMessage from "../components/UI/errorMessage/ErrorMessage";
 function Posts() {
    const [posts, setPosts] = useState([]);
    const [filter, setFilter] = useState({sort: '', query: ''});
@@ -53,8 +54,8 @@ function Posts() {
             setFilter={setFilter}
          />
          {postError &&
-            <h2 style={{textAlign: 'center', paddingTop: '20px', fontSize: "25px"}}>The following error has occurred:
-               "{postError}"</h2>}
+           <ErrorMessage error={postError}/>
+         }
          {isPostsLoading
             ? <PostLoader/>
             : <PostsList remove={removePost} posts={sortedAndSearchedPost} title="Post list"/>

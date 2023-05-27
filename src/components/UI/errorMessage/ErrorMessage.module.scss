@@ -1,0 +1,10 @@
+@import "../../../style/Colors";
+
+.message{
+    text-align: center;
+    padding: 20px;
+    font-size: 25px;
+    span{
+        color: $color-7;
+    }
+}

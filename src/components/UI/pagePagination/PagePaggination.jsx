@@ -1,7 +1,7 @@
 import React from 'react';
 import MyButton from "../button/MyButton";
 import './PagePaggination.scss'
-import {usePagesPagination} from "../../hooks/usePagesPagination";
+import {usePagesPagination} from "../../../hooks/usePagesPagination";
 const PagePagination = ({totalPage,activePage,setPage}) => {
    const pagesArray = usePagesPagination(totalPage);
    return (
