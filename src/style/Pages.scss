@@ -35,3 +35,25 @@
 
 }
 
+.form{
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  &__container{
+    padding: 15px;
+    border-radius: 10px;
+    background-color: $color-2;
+    border: 1px solid $color-4;
+    display: grid;
+    gap: 20px;
+
+  }
+  &__title{
+    font-size: 33px;
+    font-weight: 500;
+
+  }
+}

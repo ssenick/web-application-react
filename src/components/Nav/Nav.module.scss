@@ -1,0 +1,30 @@
+@import "../../style/Colors.scss";
+
+.nav{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+
+}
+.navWrapper{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-left: auto;
+}
+.navLink{
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in 0ms;
+  &:hover{
+    color: $color-3;
+  }
+  &.active{
+    color: $color-8;
+  }
+}
+.Nav_navLink .active{
+  color: $color-8;
+}

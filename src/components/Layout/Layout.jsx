@@ -1,14 +1,12 @@
 import React from 'react';
-import {NavLink,Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import './Layout.scss'
-const Layout = ({links}) => {
+import Nav from "../Nav/Nav";
+const Layout = () => {
    return (
       <div className="layout">
          <div className="header">
-            <nav className="header__nav">
-               <NavLink to='/' className="header__link">Posts</NavLink>
-               <NavLink to='/about' className="header__link">About</NavLink>
-            </nav>
+            <Nav/>
          </div>
 
          <main className="main">

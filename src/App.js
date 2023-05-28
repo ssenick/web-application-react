@@ -6,22 +6,39 @@ import About from "./pages/About";
 import Error from "./pages/Error";
 import Layout from "./components/Layout/Layout";
 import PostIdPage from "./pages/PostIdPage";
-
+import RequireAuth from "./hoc/RequireAuth";
+import LoginPage from "./pages/LoginPage";
+import {AuthProvider} from "./hoc/AuthProvider"
 
 function App() {
 
    return (
-      <BrowserRouter>
-         <Routes>
-            <Route path='/' element={<Layout/>}>
-               <Route index element={<Posts/>}/>
-               <Route path='about' element={<About/>}/>
-               <Route path='posts/:id' element={<PostIdPage/>}/>
-               <Route path='*' element={<Error/>}/>
-            </Route>
-         </Routes>
-         <Routes/>
-      </BrowserRouter>
+      <AuthProvider>
+         <BrowserRouter>
+            <Routes>
+               <Route path='/' element={<Layout/>}>
+                  <Route index element={
+                     <RequireAuth>
+                        <Posts/>
+                     </RequireAuth>
+                  }/>
+                  <Route path='about' element={
+                     <RequireAuth>
+                        <About/>
+                     </RequireAuth>
+                  }/>
+                  <Route path='posts/:id' element={
+                     <RequireAuth>
+                        <PostIdPage/>
+                     </RequireAuth>
+                  }/>
+                  <Route path='login' element={<LoginPage/>}/>
+                  <Route path='*' element={<Error/>}/>
+               </Route>
+            </Routes>
+            <Routes/>
+         </BrowserRouter>
+      </AuthProvider>
    );
 }
 
