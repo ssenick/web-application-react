@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import MyInput from "../components/UI/input/MyInput";
 import MyButton from "../components/UI/button/MyButton";
 import  '../style/Pages.scss'
-import {useLocation, useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import {useAuth} from "../hooks/useAuth";
 
 
